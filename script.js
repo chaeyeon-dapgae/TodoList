@@ -32,7 +32,7 @@ function render () {
         <div class="task-done">${taskList[i].taskContent}</div>
         <div>
           <button onclick="toggleComplete('${taskList[i].id}')"><i class="xi-refresh"></i></button>
-          <button onclick="deleteTask()"><i class="xi-trash"></i></button>
+          <button onclick="deleteTask('${taskList[i].id}')"><i class="xi-trash"></i></button>
         </div>
       </div>`
     } else {
@@ -41,7 +41,7 @@ function render () {
           <div>${taskList[i].taskContent}</div>
           <div>
             <button onclick="toggleComplete('${taskList[i].id}')"><i class="xi-check"></i></button>
-            <button onclick="deleteTask()"><i class="xi-trash"></i></button>
+            <button onclick="deleteTask('${taskList[i].id}')"><i class="xi-trash"></i></button>
           </div>
         </div>`
     }
@@ -60,8 +60,14 @@ function toggleComplete(id) {
   render ()
 }
 
-function deleteTask() {
-  console.log("삭제하겠습니다.")
+function deleteTask(id) {
+  for(let i = 0; i < taskList.length; i++) {
+    if (taskList[i].id == id) {
+      taskList.splice(i, 1)
+      break;
+    }
+  }
+  render()
 }
 
 function randomIDGenerate () {
