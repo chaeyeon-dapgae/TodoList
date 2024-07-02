@@ -34,5 +34,43 @@ body {
 .task {
   display: flex;
   justify-content: space-between;
-  padding: 1em;
+}
+.task > div {
+  line-height: 40px;
+  padding: 10px;
+}
+.task > div:first-child {
+  width: calc(100% - 120px);
+}
+.task > div:nth-child(2) {
+  width: 120px;
+}
+.task-done {
+  /* 할 일 완료 시 취소선 */
+  text-decoration: line-through;
+  background-color: #eee;
+}
+#task-board > div {
+  border-top: 1px solid lightgray;
+}
+#task-board:first-child {
+  border-top: none;
+}
+/* Button CSS */
+button {
+  border: none;
+  background-color: transparent;
+  font-size: 1.2em;
+}
+button i {
+  margin-left: 10px;
+}
+.xi-refresh {
+  color: gray;
+}
+.xi-check {
+  color: yellowgreen;
+}
+.xi-trash {
+  color: tomato;
 }
