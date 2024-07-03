@@ -55,6 +55,9 @@ h1 {
   text-decoration: line-through;
   background-color: #eee;
 }
+.task-tabs div {
+  cursor: pointer;
+}
 #task-board > div {
   border-top: 1px solid lightgray;
 }
