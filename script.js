@@ -1,7 +1,3 @@
-alert(
-  "All 탭이 아닌 다른 탭에서 check, trash 버튼 누르면 UI변경하는 부분을 아직 해결 못했습니다ㅜㅜ"
-);
-
 let taskInput = document.getElementById("task-input");
 let addButton = document.getElementById("add-button");
 let taskList = [];
@@ -10,8 +6,15 @@ let mode = "all";
 let filterList = [];
 let underLine = document.querySelector("#under-line"); //underline
 
+// + 버튼 클릭시 input content 비우기
+addButton.addEventListener("click", function () {
+  taskInput.value = "";
+});
+
+// + 버튼 클릭 시 taskList에 task 배열 추가
 addButton.addEventListener("click", addTask);
 
+// tab 클릭 시 underline 이동
 for (let i = 1; i < tabs.length; i++) {
   tabs[i].addEventListener("click", function (event) {
     underLine.style.width = event.target.offsetWidth + "px";
@@ -19,15 +22,12 @@ for (let i = 1; i < tabs.length; i++) {
     //#under-line의 두께만큼 빼줘야 함
     underLine.style.top = event.target.offsetHeight - 4 + "px";
     filter(event);
-    console.log(event);
+    //여기서 이벤트 값은 
+    console.log(event+" 이게 뭐지?");
   });
 }
 
-// + 버튼 클릭시 input content 비우기
-addButton.addEventListener("click", function () {
-  taskInput.value = "";
-});
-
+// taskList에 추가하는 함수 addTask()
 function addTask() {
   if (taskInput.value == "") {
     return;
@@ -41,12 +41,14 @@ function addTask() {
   render();
 }
 
+// addTask() 실행하면 UI 바뀌는 render() 실행
 function render() {
   let list = [];
-  // 1. 내가 선택한 탭에 따라서
-  // 2. 리스트를 달리 보여준다
+  // 내가 선택한 탭에 따라서 리스트를 달리 보여준다
   // all => taskList
   // ongoing,done => filterList
+
+  //mode 변수는 탭의 id 값을 가지고 있음(string)
   if (mode === "all") {
     //all taskList
     list = taskList;
@@ -101,7 +103,7 @@ function deleteTask(id) {
 function filter(event) {
   mode = event.target.id;
   filterList = [];
-  console.log(mode);
+  console.log(event);
   if (mode === "all") {
     render();
   } else if (mode === "ongoing") {
