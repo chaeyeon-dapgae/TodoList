@@ -1,10 +1,7 @@
 body {
   margin: 0;
   background: url("image/bg-gradation.jpg") no-repeat;
-  background-size: cover;
-  display: flex;
-  height: 100vh;
-  align-items: center;
+  padding: 40px 0;
 }
 .container {
   background-color: #fff;
@@ -12,16 +9,73 @@ body {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   border-radius: 20px;
   padding: 20px;
+
+}
+header {
+  text-align: center;
 }
 h1 {
   text-align: center;
+  font-weight: 700;
+  font-family: serif;
+  color: salmon;
+  display: inline-block;
+  position: relative;
+}
+h1:before {
+  content: '';
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background-color: salmon;
+  left: calc(100% + 7px);
+  top: calc(100% - 12px);
+  border-radius: 50%;
+}
+.input-area {
+  display: flex;
+  justify-content: space-between;
+  outline: none;
+  margin-top: 20px;
+  overflow: hidden;
+}
+input[type=text] {
+  width: 90%;
+  border: 1px solid pink;
+  border-radius: 10px 0 0 10px;
+  padding: 0 10px;
+  text-align: center;
+  color: #aaa;
+}
+input[type=text]:focus {
+  outline: none;
+}
+input[type=text]::placeholder {
+  color: #ccc;
+  font-size: 0.8em;
+  visibility: visible;
+  opacity: 1;
+  transition: 0.5s;
+}
+input[type=text]:focus::placeholder {
+  visibility: hidden;
+  opacity: 0;
+}
+#add-button {
+  width: 10%;
+  background-color: pink;
+  color: #fff;
+  border-radius: 0 10px 10px 0;
 }
 .text-area {
-  border: 1px solid lightgray;
+  border: 1px solid pink;
+  margin-top: 20px;
+  border-radius: 10px;
+  padding: 0 20px;
 }
 .task-tabs {
   display: flex;
-  border-bottom: 1px solid lightgray;
+  /* border-bottom: 1px solid lightgray; */
   position: relative;
 }
 .task-tabs div {
@@ -31,10 +85,11 @@ h1 {
   height: 4px;
   background-color: pink;
   position: absolute;
-  width: 55px;
+  width: 50px;
   left: 0;
   top: calc(100% - 4px);
   padding: 0;
+  transition: 0.5s;
 }
 .task {
   display: flex;
@@ -46,11 +101,14 @@ h1 {
 }
 .task > div:first-child {
   width: calc(100% - 120px);
+  color: #777;
+  background-color: #fff;
+  transition: 0.5s;
 }
 .task > div:nth-child(2) {
   width: 120px;
 }
-.task-done {
+.task > div:first-child.task-done {
   /* 할 일 완료 시 취소선 */
   text-decoration: line-through;
   background-color: #eee;
@@ -58,10 +116,13 @@ h1 {
 .task-tabs div {
   cursor: pointer;
 }
+#task-board {
+  padding: 10px 0;
+}
 #task-board > div {
   border-top: 1px solid lightgray;
 }
-#task-board:first-child {
+#task-board > div:nth-child(1) {
   border-top: none;
 }
 /* Button CSS */
@@ -72,6 +133,10 @@ button {
 }
 button i {
   margin-left: 10px;
+  transition: 0.35s;
+}
+button i:hover {
+  transform: scale(1.5);
 }
 .xi-refresh {
   color: gray;
